@@ -13,6 +13,7 @@
 		1332A9792AD48E8D00D8529F /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1332A9782AD48E8D00D8529F /* Preview Assets.xcassets */; };
 		13C6E7032AD581360035AF94 /* MarvelCharactersView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13C6E7022AD581360035AF94 /* MarvelCharactersView.swift */; };
 		13C6E7052AD5814F0035AF94 /* MarvelComicsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13C6E7042AD5814F0035AF94 /* MarvelComicsView.swift */; };
+		13C6E70E2AD59EA80035AF94 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 13C6E70D2AD59EA80035AF94 /* LaunchScreen.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -23,6 +24,8 @@
 		1332A9782AD48E8D00D8529F /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		13C6E7022AD581360035AF94 /* MarvelCharactersView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarvelCharactersView.swift; sourceTree = "<group>"; };
 		13C6E7042AD5814F0035AF94 /* MarvelComicsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarvelComicsView.swift; sourceTree = "<group>"; };
+		13C6E70C2AD59DB90035AF94 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		13C6E70D2AD59EA80035AF94 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -55,6 +58,7 @@
 		1332A9702AD48E8C00D8529F /* MarvelUniverse */ = {
 			isa = PBXGroup;
 			children = (
+				13C6E70C2AD59DB90035AF94 /* Info.plist */,
 				13D8C5182AD491CD00686E74 /* AppController */,
 				13D8C5192AD491D900686E74 /* Modules */,
 				1332A9752AD48E8D00D8529F /* Assets.xcassets */,
@@ -119,6 +123,14 @@
 			path = View;
 			sourceTree = "<group>";
 		};
+		13C6E70F2AD59F420035AF94 /* LaunchScreen */ = {
+			isa = PBXGroup;
+			children = (
+				13C6E70D2AD59EA80035AF94 /* LaunchScreen.storyboard */,
+			);
+			path = LaunchScreen;
+			sourceTree = "<group>";
+		};
 		13D8C5182AD491CD00686E74 /* AppController */ = {
 			isa = PBXGroup;
 			children = (
@@ -130,6 +142,7 @@
 		13D8C5192AD491D900686E74 /* Modules */ = {
 			isa = PBXGroup;
 			children = (
+				13C6E70F2AD59F420035AF94 /* LaunchScreen */,
 				13C6E7062AD581B90035AF94 /* Main */,
 				13C6E7072AD581C10035AF94 /* MarvelCharacters */,
 				13C6E7082AD581CD0035AF94 /* MarvelComics */,
@@ -195,6 +208,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				13C6E70E2AD59EA80035AF94 /* LaunchScreen.storyboard in Resources */,
 				1332A9792AD48E8D00D8529F /* Preview Assets.xcassets in Resources */,
 				1332A9762AD48E8D00D8529F /* Assets.xcassets in Resources */,
 			);
@@ -341,9 +355,13 @@
 				DEVELOPMENT_ASSET_PATHS = "\"MarvelUniverse/Preview Content\"";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = MarvelUniverse/Info.plist;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.entertainment";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
-				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen.storyboard;
+				INFOPLIST_KEY_UIRequiresFullScreen = NO;
+				INFOPLIST_KEY_UIStatusBarStyle = UIStatusBarStyleLightContent;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -353,6 +371,9 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = ahmad.com.MarvelUniverse;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -369,9 +390,13 @@
 				DEVELOPMENT_ASSET_PATHS = "\"MarvelUniverse/Preview Content\"";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = MarvelUniverse/Info.plist;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.entertainment";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
-				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen.storyboard;
+				INFOPLIST_KEY_UIRequiresFullScreen = NO;
+				INFOPLIST_KEY_UIStatusBarStyle = UIStatusBarStyleLightContent;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -381,6 +406,9 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = ahmad.com.MarvelUniverse;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
