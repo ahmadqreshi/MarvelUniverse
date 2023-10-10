@@ -23,7 +23,7 @@ struct MarvelCharactersView: View {
                     LazyVGrid(columns: columns) {
                         ForEach(0...20, id: \.self) { _ in
                             CharacterCardView()
-                                .padding(.bottom, 16)
+                                .padding(.bottom, 32)
                         }
                     }
                     .padding(.horizontal, 16)

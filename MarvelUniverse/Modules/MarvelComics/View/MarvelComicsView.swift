@@ -22,8 +22,8 @@ struct MarvelComicsView: View {
             ScrollView(.vertical) {
                 LazyVGrid(columns: columns) {
                     ForEach(0...20, id: \.self) { _ in
-                        CharacterCardView()
-                            .padding(.bottom, 16)
+                       ComicsCardView()
+                            .padding(.bottom, 32)
                     }
                 }
                 .padding(.horizontal, 16)

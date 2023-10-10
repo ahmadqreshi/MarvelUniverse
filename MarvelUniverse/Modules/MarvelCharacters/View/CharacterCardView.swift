@@ -13,8 +13,6 @@ struct CharacterCardView: View {
             ImageAsset.demo.set
                 .resizable()
                 .scaledToFill()
-                .frame(width: getRect().width/2 - 30, height: 200, alignment: .top)
-                .clipped()
                 .cornerRadius(10)
             
             Text("Captain America")
@@ -23,6 +21,7 @@ struct CharacterCardView: View {
                 .foregroundColor(.white)
                 .padding(.bottom, 10)
         }
+        .frame(width: getRect().width/2 - 20, height: 200, alignment: .top)
     }
 }
 
