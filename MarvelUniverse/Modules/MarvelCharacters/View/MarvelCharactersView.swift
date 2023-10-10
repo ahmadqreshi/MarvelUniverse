@@ -30,7 +30,7 @@ struct MarvelCharactersView: View {
                 }
             }
         }
-        .searchable(text: $searchText, placement: .navigationBarDrawer(displayMode: .always), prompt: Text("Search any Character")) {
+        .searchable(text: $searchText, placement: .navigationBarDrawer(displayMode: .automatic), prompt: Text("Search any Character")) {
             ForEach(searchResults, id: \.self) { result in
                 Text("Are you looking for \(result)?").searchCompletion(result)
             }
