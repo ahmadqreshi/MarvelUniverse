@@ -11,19 +11,33 @@ enum FilterOptions: String, CaseIterable, Identifiable {
     case releasedLastWeek
     case releasingNextWeek
     case releaseThisMonth
- 
+    
     var id: Self { return self }
-
+    
     var title: String {
         switch self {
-            case .releasedThisWeek:
-                return "Released this week"
-            case .releasedLastWeek:
-                return "Released last week"
-            case .releasingNextWeek:
-               return "Releasing next week"
+        case .releasedThisWeek:
+            return "Released this week"
+        case .releasedLastWeek:
+            return "Released last week"
+        case .releasingNextWeek:
+            return "Releasing next week"
         case .releaseThisMonth:
             return "Release this month"
+        }
+    }
+    
+    
+    var dateDescriptor: String {
+        switch self {
+        case .releasedThisWeek:
+            return "thisWeek"
+        case .releasedLastWeek:
+            return "lastWeek"
+        case .releasingNextWeek:
+            return "nextWeek"
+        case .releaseThisMonth:
+            return "thisMonth"
         }
     }
 }
