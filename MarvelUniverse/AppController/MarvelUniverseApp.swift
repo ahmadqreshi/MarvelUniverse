@@ -11,10 +11,7 @@ import SwiftUI
 struct MarvelUniverseApp: App {
     var body: some Scene {
         WindowGroup {
-            NavigationView {
-                MainView()
-            }
-            .navigationViewStyle(.stack)
+            MainView()
         }
     }
 }

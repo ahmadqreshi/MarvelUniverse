@@ -10,7 +10,7 @@ import SwiftUI
 struct MarvelComicsView: View {
     var body: some View {
         ZStack {
-            Color.black.ignoresSafeArea()
+            
             Text("Grid of Comics")
         }
     }

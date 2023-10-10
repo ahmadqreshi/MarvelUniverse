@@ -9,13 +9,6 @@ import SwiftUI
 
 struct MainView: View {
     
-    init() {
-        
-        UITabBar.appearance().barTintColor = UIColor.white
-        UITabBar.appearance().unselectedItemTintColor = UIColor.gray.withAlphaComponent(0.7)
-        
-    }
-    
     var body: some View {
         TabView {
             MarvelCharactersView()
@@ -30,7 +23,7 @@ struct MainView: View {
                     Text("Comics")
                 }
         }
-        .accentColor(.white)
+        .accentColor(.red)
     }
 }
 
