@@ -9,6 +9,8 @@ import SwiftUI
 
 struct MarvelCharactersView: View {
     
+    @StateObject var viewModel: CharactersViewModel = CharactersViewModel()
+    
     let columns = [
         GridItem(.flexible(), alignment: .top),
         GridItem(.flexible(), alignment: .top),

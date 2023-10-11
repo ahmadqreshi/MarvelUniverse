@@ -30,6 +30,7 @@
 		13CFB2682AD677CE00F6CF57 /* ReponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13CFB2672AD677CE00F6CF57 /* ReponseModel.swift */; };
 		13CFB26B2AD6787900F6CF57 /* CharactersModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13CFB26A2AD6787900F6CF57 /* CharactersModel.swift */; };
 		13CFB26E2AD6798300F6CF57 /* ComicsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13CFB26D2AD6798300F6CF57 /* ComicsModel.swift */; };
+		13CFB2722AD6A7C800F6CF57 /* APIConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13CFB2712AD6A7C700F6CF57 /* APIConstants.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -57,6 +58,7 @@
 		13CFB2672AD677CE00F6CF57 /* ReponseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReponseModel.swift; sourceTree = "<group>"; };
 		13CFB26A2AD6787900F6CF57 /* CharactersModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharactersModel.swift; sourceTree = "<group>"; };
 		13CFB26D2AD6798300F6CF57 /* ComicsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComicsModel.swift; sourceTree = "<group>"; };
+		13CFB2712AD6A7C700F6CF57 /* APIConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIConstants.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -129,6 +131,7 @@
 		13AB955D2AD5C64F002D0E7D /* Networking */ = {
 			isa = PBXGroup;
 			children = (
+				13CFB2712AD6A7C700F6CF57 /* APIConstants.swift */,
 				13AB955E2AD5C679002D0E7D /* Endpoint.swift */,
 				13AB955B2AD5C638002D0E7D /* WebService.swift */,
 			);
@@ -386,6 +389,7 @@
 				13AB95562AD5C1F6002D0E7D /* LoaderView.swift in Sources */,
 				1332A9742AD48E8C00D8529F /* MainView.swift in Sources */,
 				13CFB26E2AD6798300F6CF57 /* ComicsModel.swift in Sources */,
+				13CFB2722AD6A7C800F6CF57 /* APIConstants.swift in Sources */,
 				13CFB2652AD676A800F6CF57 /* ComicsDataRepository.swift in Sources */,
 				13AB955F2AD5C679002D0E7D /* Endpoint.swift in Sources */,
 				1332A9722AD48E8C00D8529F /* MarvelUniverseApp.swift in Sources */,

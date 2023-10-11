@@ -14,13 +14,13 @@ enum ApiError : Error {
 
 
 class WebService {
-    static let shared = WebService()
+    
     private init() {}
+    static let shared = WebService()
     
     func request<T: Codable>(resultType: T.Type, endpoint: Endpoint, completionHandler: @escaping (Result<T,ApiError>) -> Void) {
         var requestUrl = URLRequest(url: endpoint.url!)
         requestUrl.httpMethod = endpoint.method
-        
         URLSession.shared.dataTask(with: requestUrl) { (responseData, httpUrlResponse, error) in
             guard let jsonData = responseData , let urlResponse = httpUrlResponse as? HTTPURLResponse else {
                 completionHandler(.failure(.responseProblem))
@@ -28,7 +28,7 @@ class WebService {
             }
             if !(200..<300).contains(urlResponse.statusCode) {
                 guard let json = try? JSONSerialization.jsonObject(with: jsonData, options: []) as? [String: Any] else { return }
-                guard let message = json["status"] as? String else { return }
+                guard let message = json["message"] as? String else { return }
                 completionHandler(.failure(.failureMessage(message: message)))
                 return
             }
