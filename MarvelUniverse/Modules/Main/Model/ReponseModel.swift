@@ -7,15 +7,16 @@
 
 import Foundation
 
+
 struct ResponseModel<T: Codable>: Codable {
-    let code, status, copyright, attributionText: String
-    let attributionHTML: String
+    let status: String
     let data: DataModel<T>
-    let etag: String
+    let code: Int
+    let copyright, attributionText, attributionHTML, etag: String
 }
 
-
+// MARK: - DataClass
 struct DataModel<T: Codable>: Codable {
-    let offset, limit, total, count: String
     let results: [T]
+    let offset, count, total, limit: Int
 }
