@@ -48,7 +48,7 @@ extension Endpoint {
         switch self {
         case .characters(let searchKey, let offset):
             var params = ["offset": "\(offset)", "limit": "\(APIConstants.defaultLimit)"]
-            if let searchKey {
+            if let searchKey, !searchKey.isEmpty {
                 params["nameStartsWith"] = searchKey
             }
             return params

@@ -15,46 +15,67 @@ struct MarvelCharactersView: View {
         GridItem(.flexible(), alignment: .top),
         GridItem(.flexible(), alignment: .top),
     ]
-    @State private var searchText = ""
-    let history = ["Holly", "Josh", "Rhonda", "Ted"]
+    
+    
     
     var body: some View {
         NavigationStack {
-            VStack {
-                ScrollView(.vertical) {
-                    LazyVGrid(columns: columns) {
-                        ForEach(0...20, id: \.self) { _ in
-                            CharacterCardView()
-                                .padding(.bottom, 32)
+            
+            if viewModel.isLoading {
+                LoaderView()
+            } else {
+                VStack {
+                    
+                    ScrollView(.vertical) {
+                        LazyVGrid(columns: columns) {
+                            ForEach(Array(viewModel.characters.enumerated()), id: \.offset) { index, character in
+                                CharacterCardView(character: character)
+                                    .onAppear {
+                                        viewModel.shouldLoadData(id: index)
+                                    }
+                            }
+                        }
+                        .padding(.horizontal, 16)
+                        
+                        if viewModel.isMoreDataAvailable {
+                            lastRowView
                         }
                     }
-                    .padding(.horizontal, 16)
                 }
             }
+            
         }
-        .searchable(text: $searchText, placement: .navigationBarDrawer(displayMode: .automatic), prompt: Text("Search any Character")) {
+        .searchable(text: $viewModel.searchText, placement: .navigationBarDrawer(displayMode: .automatic), prompt: Text("Search any Character")) {
             ForEach(searchResults, id: \.self) { result in
                 Text("Are you looking for \(result)?").searchCompletion(result)
             }
         }
-        .onChange(of: searchText) { newValue in
+        .onChange(of: viewModel.searchText) { newValue in
             debugPrint(newValue)
         }
         .onSubmit(of: .search, runSearch)
-        
     }
     
     var searchResults: [String] {
-        if searchText.isEmpty {
-            return history
+        if viewModel.searchText.isEmpty {
+            return viewModel.history
         } else {
-            return history.filter { $0.contains(searchText) }
+            return viewModel.history.filter { $0.contains(viewModel.searchText) }
         }
     }
     
-    
     func runSearch() {
+        viewModel.history.append(viewModel.searchText)
+        viewModel.getData()
         debugPrint("Run Search")
+    }
+    
+    
+    var lastRowView: some View {
+        ZStack(alignment: .center) {
+            ProgressView()
+        }
+        .frame(height: 50)
     }
 }
 
