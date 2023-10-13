@@ -9,13 +9,16 @@ import SwiftUI
 
 struct MarvelComicsView: View {
     
-    @State private var selectedSorting = FilterOptions.releaseThisMonth
+    @ObservedObject private var viewModel: ComicsViewModel
+    
+    init(viewModel: ComicsViewModel) {
+        self.viewModel = viewModel
+    }
+    
     let columns = [
         GridItem(.flexible(), alignment: .top),
         GridItem(.flexible(), alignment: .top),
     ]
-    
-    @StateObject private var viewModel: ComicsViewModel = ComicsViewModel()
     
     var body: some View {
         VStack {
@@ -84,6 +87,6 @@ struct MarvelComicsView: View {
 
 struct MarvelComicsView_Previews: PreviewProvider {
     static var previews: some View {
-        MarvelComicsView()
+        MarvelComicsView(viewModel: ComicsViewModel())
     }
 }

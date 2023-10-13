@@ -9,7 +9,11 @@ import SwiftUI
 
 struct MarvelCharactersView: View {
     
-    @StateObject var viewModel: CharactersViewModel = CharactersViewModel()
+    @ObservedObject private var viewModel: CharactersViewModel
+    
+    init(viewModel: CharactersViewModel) {
+        self.viewModel = viewModel
+    }
     @Environment(\.isSearching) private var isSearching: Bool
    
     let columns = [
@@ -67,6 +71,6 @@ struct MarvelCharactersView: View {
 
 struct MarvelCharactersView_Previews: PreviewProvider {
     static var previews: some View {
-        MarvelCharactersView()
+        MarvelCharactersView(viewModel: CharactersViewModel())
     }
 }

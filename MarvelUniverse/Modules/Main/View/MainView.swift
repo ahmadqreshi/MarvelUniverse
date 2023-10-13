@@ -9,15 +9,19 @@ import SwiftUI
 
 struct MainView: View {
     
+    @StateObject private var marvelCharactersViewModel: CharactersViewModel = CharactersViewModel(dataRepo: CharactersDataRepository())
+    @StateObject private var marvelComicsViewModel: ComicsViewModel = ComicsViewModel(dataRepo: ComicsDataRepository())
+    
+    
     var body: some View {
         TabView {
-            MarvelCharactersView()
+            MarvelCharactersView(viewModel: marvelCharactersViewModel)
                 .tabItem {
                     Image(systemName: "shareplay")
                     Text("Charcters")
                 }
             
-            MarvelComicsView()
+            MarvelComicsView(viewModel: marvelComicsViewModel)
                 .tabItem {
                     Image(systemName: "books.vertical.fill")
                     Text("Comics")
