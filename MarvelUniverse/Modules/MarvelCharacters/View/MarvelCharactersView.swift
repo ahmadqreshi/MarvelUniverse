@@ -48,6 +48,9 @@ struct MarvelCharactersView: View {
             }
             
         }
+        .onAppear {
+            viewModel.getData()
+        }
         .searchable(text: $viewModel.searchText, placement: .navigationBarDrawer(displayMode: .automatic), prompt: Text("Search any Character")) {
             ForEach(viewModel.searchResults, id: \.self) { result in
                 Text("Are you looking for \(result)?").searchCompletion(result)

@@ -11,17 +11,19 @@ class CharactersViewModel: ObservableObject {
     
     
     
+    private let dataRepo: CharactersDataServiceProtocol
     
     @Published var characters: [CharactersModel] = [] // main data source for populating data
     @Published var isLoading: Bool = false
     @Published var fetchedCharacters: [CharactersModel] = []
     @Published var searchedCharacters: [CharactersModel] = []
-    
-    var medium: FetchDataMedium = .normal
     @Published var offset: Int = 0
     @Published var isMoreDataAvailable: Bool = false
     @Published var searchText: String = ""
     @Published var isResultsEmpty: Bool = false
+    
+    var medium: FetchDataMedium = .normal
+    var isViewLoaded: Bool = false
     
     var history: [String] = [] // to show history of results
     var searchResults: [String] {
@@ -33,11 +35,19 @@ class CharactersViewModel: ObservableObject {
     }
     
     
-    init() {
-        fetchCharactersData()
+    init(dataRepo: CharactersDataServiceProtocol = CharactersDataRepository()) {
+        self.dataRepo = dataRepo
     }
     
-    func fetchCharactersData() {
+    
+    func getData() {
+        if !isViewLoaded {
+            fetchCharactersData()
+            isViewLoaded = true
+        }
+    }
+    
+     func fetchCharactersData() {
         DispatchQueue.main.async { [weak self] in
             guard let strongSelf = self else { return }
             if strongSelf.offset == 0 {
@@ -49,7 +59,7 @@ class CharactersViewModel: ObservableObject {
         
         DispatchQueue.global(qos: .userInitiated).async { [weak self] in
             guard let strongSelf = self else { return }
-            CharactersDataRepository.shared.getCharacters(name: strongSelf.searchText, offset: strongSelf.offset) { response in
+            strongSelf.dataRepo.getCharacters(name: strongSelf.searchText, offset: strongSelf.offset) { response in
                 DispatchQueue.main.async {
                     strongSelf.isMoreDataAvailable = strongSelf.characters.count < response.data.count
                     switch strongSelf.medium {

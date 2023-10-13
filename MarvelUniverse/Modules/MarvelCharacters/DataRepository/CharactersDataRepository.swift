@@ -6,11 +6,14 @@
 //
 
 import Foundation
-class CharactersDataRepository {
-    
-    private init() {}
-    static let shared = CharactersDataRepository()
-    
+
+protocol CharactersDataServiceProtocol {
+    func getCharacters(name: String?, offset: Int, success: @escaping (ResponseModel<CharactersModel>) -> Void, failure: @escaping (String) -> Void)
+}
+
+
+class CharactersDataRepository: CharactersDataServiceProtocol {
+        
     func getCharacters(name: String?, offset: Int, success: @escaping (ResponseModel<CharactersModel>) -> Void, failure: @escaping (String) -> Void) {
         WebService.shared.request(resultType: ResponseModel<CharactersModel>.self, endpoint: .characters(name: name, offset: offset)) { response in
             switch response {

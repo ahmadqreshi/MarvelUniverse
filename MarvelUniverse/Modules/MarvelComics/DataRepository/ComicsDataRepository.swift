@@ -6,11 +6,12 @@
 //
 
 import Foundation
-class ComicsDataRepository {
-    
-    private init() {}
-    static let shared = ComicsDataRepository()
-    
+
+protocol ComicsDataServiceProtocol {
+    func getComics(dateDescriptor: String?, offset: Int, success: @escaping (ResponseModel<ComicsModel>) -> Void, failure: @escaping (String) -> Void)
+}
+
+class ComicsDataRepository: ComicsDataServiceProtocol {
     func getComics(dateDescriptor: String?, offset: Int, success: @escaping (ResponseModel<ComicsModel>) -> Void, failure: @escaping (String) -> Void) {
         WebService.shared.request(resultType: ResponseModel<ComicsModel>.self, endpoint: .comics(dateDescriptor: dateDescriptor, offset: offset)) { response in
             switch response {
