@@ -7,6 +7,7 @@
 
 import Foundation
 enum ApiError : Error {
+    case urlError
     case responseProblem
     case decodingProblem
     case failureMessage(message : String)
@@ -19,7 +20,8 @@ class WebService {
     static let shared = WebService()
     
     func request<T: Codable>(resultType: T.Type, endpoint: Endpoint, completionHandler: @escaping (Result<T,ApiError>) -> Void) {
-        var requestUrl = URLRequest(url: endpoint.url!)
+        guard let url = endpoint.url else { completionHandler(.failure(.urlError)); return }
+        var requestUrl = URLRequest(url: url)
         requestUrl.httpMethod = endpoint.method
         URLSession.shared.dataTask(with: requestUrl) { (responseData, httpUrlResponse, error) in
             guard let jsonData = responseData , let urlResponse = httpUrlResponse as? HTTPURLResponse else {

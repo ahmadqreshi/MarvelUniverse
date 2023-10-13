@@ -18,6 +18,8 @@ class ComicsDataRepository {
                 success(data)
             case .failure(let error):
                 switch error {
+                case .urlError:
+                    failure("url is valid")
                 case .decodingProblem :
                     failure("response problem")
                 case .responseProblem :
