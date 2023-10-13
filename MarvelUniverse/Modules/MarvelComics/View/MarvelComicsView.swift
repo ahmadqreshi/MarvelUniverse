@@ -15,6 +15,8 @@ struct MarvelComicsView: View {
         GridItem(.flexible(), alignment: .top),
     ]
     
+    @StateObject private var viewModel: ComicsViewModel = ComicsViewModel()
+    
     var body: some View {
         VStack {
             navigationView
@@ -28,6 +30,9 @@ struct MarvelComicsView: View {
                 }
                 .padding(.horizontal, 16)
             }
+        }
+        .onAppear {
+            viewModel.fetchComicsData()
         }
     }
     
@@ -48,7 +53,7 @@ struct MarvelComicsView: View {
     
     private var filterButton: some View {
         Menu {
-            Picker("Sort", selection: $selectedSorting) {
+            Picker("Sort", selection: $viewModel.selectedFilter) {
                 ForEach(FilterOptions.allCases) {
                     Text($0.title)
                 }

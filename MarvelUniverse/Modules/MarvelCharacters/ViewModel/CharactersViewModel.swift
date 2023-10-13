@@ -10,10 +10,10 @@ import Foundation
 class CharactersViewModel: ObservableObject {
     
     
-    @Published var isLoading: Bool = false
+    
     
     @Published var characters: [CharactersModel] = [] // main data source for populating data
-    
+    @Published var isLoading: Bool = false
     @Published var fetchedCharacters: [CharactersModel] = []
     @Published var searchedCharacters: [CharactersModel] = []
     
@@ -24,9 +24,6 @@ class CharactersViewModel: ObservableObject {
     @Published var isResultsEmpty: Bool = false
     
     var history: [String] = []
-    init() {
-        fetchCharactersData()
-    }
     
     func fetchCharactersData() {
         DispatchQueue.main.async { [weak self] in

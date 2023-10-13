@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		131A43462AD920DD004770AF /* FetchedDataMedium.swift in Sources */ = {isa = PBXBuildFile; fileRef = 131A43452AD920DD004770AF /* FetchedDataMedium.swift */; };
+		131A43482AD9238D004770AF /* LastRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 131A43472AD9238D004770AF /* LastRowView.swift */; };
 		1332A9722AD48E8C00D8529F /* MarvelUniverseApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1332A9712AD48E8C00D8529F /* MarvelUniverseApp.swift */; };
 		1332A9742AD48E8C00D8529F /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1332A9732AD48E8C00D8529F /* MainView.swift */; };
 		1332A9762AD48E8D00D8529F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1332A9752AD48E8D00D8529F /* Assets.xcassets */; };
@@ -36,6 +37,7 @@
 
 /* Begin PBXFileReference section */
 		131A43452AD920DD004770AF /* FetchedDataMedium.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchedDataMedium.swift; sourceTree = "<group>"; };
+		131A43472AD9238D004770AF /* LastRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LastRowView.swift; sourceTree = "<group>"; };
 		1332A96E2AD48E8C00D8529F /* MarvelUniverse.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MarvelUniverse.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1332A9712AD48E8C00D8529F /* MarvelUniverseApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarvelUniverseApp.swift; sourceTree = "<group>"; };
 		1332A9732AD48E8C00D8529F /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
@@ -126,6 +128,7 @@
 			isa = PBXGroup;
 			children = (
 				13AB95552AD5C1F6002D0E7D /* LoaderView.swift */,
+				131A43472AD9238D004770AF /* LastRowView.swift */,
 			);
 			path = CustomView;
 			sourceTree = "<group>";
@@ -377,6 +380,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				13AB955C2AD5C638002D0E7D /* WebService.swift in Sources */,
+				131A43482AD9238D004770AF /* LastRowView.swift in Sources */,
 				13AB95512AD5BB89002D0E7D /* FilterOptions.swift in Sources */,
 				13AB95542AD5BE71002D0E7D /* ComicsCardView.swift in Sources */,
 				13CFB2682AD677CE00F6CF57 /* ReponseModel.swift in Sources */,

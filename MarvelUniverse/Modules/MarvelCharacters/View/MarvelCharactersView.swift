@@ -40,7 +40,7 @@ struct MarvelCharactersView: View {
                         .padding(.horizontal, 16)
                         
                         if viewModel.isMoreDataAvailable {
-                            lastRowView
+                            LastRowView()
                         }
                         
                         if viewModel.isResultsEmpty {
@@ -51,6 +51,9 @@ struct MarvelCharactersView: View {
                 
             }
             
+        }
+        .onAppear {
+            viewModel.fetchCharactersData()
         }
         .searchable(text: $viewModel.searchText, placement: .navigationBarDrawer(displayMode: .automatic), prompt: Text("Search any Character")) {
             ForEach(searchResults, id: \.self) { result in
@@ -74,12 +77,6 @@ struct MarvelCharactersView: View {
         }
     }
     
-    var lastRowView: some View {
-        ZStack(alignment: .center) {
-            ProgressView()
-        }
-        .frame(height: 50)
-    }
 }
 
 struct MarvelCharactersView_Previews: PreviewProvider {

@@ -6,13 +6,31 @@
 //
 
 import SwiftUI
+import SDWebImageSwiftUI
 
 struct ComicsCardView: View {
+    
+    //var comic: ComicsModel
+    
+//    var thumbnailString: String {
+//        let path = comic.thumbnail?.path ?? ""
+//        let securePath = path.replacingOccurrences(of: "http", with: "https")
+//        let actualPath = securePath.replacingOccurrences(of: #"\"#, with: "")
+//        let extensionString = character.thumbnail?.thumbnailExtension ?? ""
+//        return "\(actualPath).\(extensionString)"
+//    }
+//
+    
     var body: some View {
         ZStack() {
-            ImageAsset.demo.set
+            WebImage(url: URL(string: "thumbnailString"))
                 .resizable()
-                .scaledToFill()
+                .placeholder {
+                    RoundedRectangle(cornerRadius: 10)
+                        .foregroundColor(.gray)
+                }
+                .indicator(.activity)
+                .transition(.fade(duration: 0.5))
                 .cornerRadius(10)
             VStack {
                 HStack {
@@ -39,8 +57,8 @@ struct ComicsCardView: View {
     }
 }
 
-struct ComicsCardView_Previews: PreviewProvider {
-    static var previews: some View {
-        ComicsCardView()
-    }
-}
+//struct ComicsCardView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        ComicsCardView()
+//    }
+//}

@@ -54,7 +54,7 @@ extension Endpoint {
             return params
         case .comics(let dateDescriptor, let offset):
             var params = ["offset": "\(offset)", "limit": "\(APIConstants.defaultLimit)"]
-            if let dateDescriptor {
+            if let dateDescriptor, !dateDescriptor.isEmpty {
                 params["dateDescriptor"] = dateDescriptor
             }
             return params
