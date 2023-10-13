@@ -18,7 +18,7 @@ class CharactersViewModel: ObservableObject {
     @Published private(set) var isResultsEmpty: Bool = false
     @Published var searchText: String = ""
     
-    private var medium: FetchDataMedium = .normal
+    private(set) var medium: FetchDataMedium = .normal
     private var isViewLoaded: Bool = false
     private var fetchedCharacters: [CharactersModel] = []
     private var searchedCharacters: [CharactersModel] = []
@@ -46,8 +46,8 @@ class CharactersViewModel: ObservableObject {
     }
     
      
-    func shouldLoadData(id: Int)  {
-        if id == characters.count - 1 {
+    func shouldLoadData(id: Int, limit: Int)  {
+        if id == limit - 1 {
             offset += 1
             fetchCharactersData()
         }
@@ -81,6 +81,7 @@ class CharactersViewModel: ObservableObject {
        DispatchQueue.global(qos: .userInitiated).async { [weak self] in
            guard let strongSelf = self else { return }
            strongSelf.dataRepo.getCharacters(name: strongSelf.searchText.lowercased(), offset: strongSelf.offset) { response in
+               debugPrint(strongSelf.offset)
                DispatchQueue.main.async {
                    strongSelf.isMoreDataAvailable = strongSelf.characters.count < response.data.count
                    switch strongSelf.medium {

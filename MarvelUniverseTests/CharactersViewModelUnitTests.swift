@@ -6,6 +6,7 @@
 //
 
 import XCTest
+import Combine
 @testable import MarvelUniverse
 
 
@@ -24,6 +25,7 @@ class MockCharactersDataRepository: CharactersDataServiceProtocol {
 final class CharactersViewModelUnitTests: XCTestCase {
     
     private var viewModel: CharactersViewModel!
+    private var cancellables = Set<AnyCancellable>()
     override func setUpWithError() throws {
         viewModel = CharactersViewModel(dataRepo: MockCharactersDataRepository())
     }
@@ -32,19 +34,64 @@ final class CharactersViewModelUnitTests: XCTestCase {
        viewModel = nil
     }
 
-    func testExample() throws {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
-        // Any test you write for XCTest can be annotated as throws and async.
-        // Mark your test throws to produce an unexpected failure when your test encounters an uncaught error.
-        // Mark your test async to allow awaiting for asynchronous code to complete. Check the results with assertions afterwards.
+    //MARK: - Test: Data Source Availability
+    func testCharactersDataSourceBeforeApiCall() throws {
+        XCTAssertTrue(viewModel.characters.isEmpty)
     }
-
-    func testPerformanceExample() throws {
-        // This is an example of a performance test case.
-        measure {
-            // Put the code you want to measure the time of here.
-        }
+    
+    //MARK: - Test: Population of Data Source
+    func testCharactersDataSourceAfterApiCall() throws {
+        let expectation = XCTestExpectation(description: "Should return Characters after 3 seconds")
+        viewModel.getData()
+        viewModel.$characters
+            .dropFirst()
+            .sink { _ in
+                expectation.fulfill()
+            }
+            .store(in: &cancellables)
+        wait(for: [expectation], timeout: 5)
+        XCTAssertGreaterThan(viewModel.characters.count, 0)
     }
-
+    
+    //MARK: - Test: Offset value increases on scrolling to Last
+    func testOffsetValueShouldIncreaseOnScrolling() {
+        let defaultdataLimit: Int = 20
+        viewModel.shouldLoadData(id: 19, limit: defaultdataLimit) // should paginate on last cell
+        XCTAssertGreaterThan(viewModel.offset, 0)
+    }
+    
+    //MARK: - Test: Medium on Searching should be query
+    func testMediumOnSearchQuery() {
+        viewModel.searchQuery()
+        XCTAssertTrue(viewModel.medium == .query)
+    }
+    
+    //MARK: - Test: Search Query String should not be empty after search query pressed
+    func testSearchQueryShouldNotEmptyOnSubmit() {
+        viewModel.searchText = "a"
+        viewModel.searchQuery()
+        XCTAssertTrue(!viewModel.searchText.isEmpty)
+    }
+    
+    //MARK: - Test: search query should add to history
+    func testSearchQueryShouldAddIntoHistory() {
+        viewModel.searchText = "a"
+        viewModel.searchQuery()
+        XCTAssertTrue(viewModel.history.contains(viewModel.searchText))
+    }
+    
+    //MARK: - Test: Search Characters results
+    func testSearchCharacterByNameResults() {
+        viewModel.searchQuery()
+        let expectation = XCTestExpectation(description: "Should return Characters after 3 seconds")
+        viewModel.$characters
+            .dropFirst()
+            .sink { _ in
+                expectation.fulfill()
+            }
+            .store(in: &cancellables)
+        wait(for: [expectation], timeout: 5)
+        XCTAssertGreaterThan(viewModel.characters.count, 0)
+    }
+    
 }
