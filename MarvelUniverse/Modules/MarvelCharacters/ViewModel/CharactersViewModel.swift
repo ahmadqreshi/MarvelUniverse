@@ -60,6 +60,7 @@ class CharactersViewModel: ObservableObject {
             history.append(searchText)
         }
         medium = .query
+        isLoading = true
         fetchCharactersData()
     }
     
@@ -74,14 +75,12 @@ class CharactersViewModel: ObservableObject {
            guard let strongSelf = self else { return }
            if strongSelf.offset == 0 {
                strongSelf.isLoading = true
-           } else  {
-               strongSelf.isMoreDataAvailable = true
            }
        }
        
        DispatchQueue.global(qos: .userInitiated).async { [weak self] in
            guard let strongSelf = self else { return }
-           strongSelf.dataRepo.getCharacters(name: strongSelf.searchText, offset: strongSelf.offset) { response in
+           strongSelf.dataRepo.getCharacters(name: strongSelf.searchText.lowercased(), offset: strongSelf.offset) { response in
                DispatchQueue.main.async {
                    strongSelf.isMoreDataAvailable = strongSelf.characters.count < response.data.count
                    switch strongSelf.medium {

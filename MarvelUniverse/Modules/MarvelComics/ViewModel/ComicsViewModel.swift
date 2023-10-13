@@ -48,8 +48,6 @@ class ComicsViewModel: ObservableObject {
             guard let strongSelf = self else { return }
             if strongSelf.offset == 0 {
                 strongSelf.isLoading = true
-            } else  {
-                strongSelf.isMoreDataAvailable = true
             }
         }
         
