@@ -12,16 +12,16 @@ class CharactersViewModel: ObservableObject {
     private let dataRepo: CharactersDataServiceProtocol
     
     @Published private(set) var characters: [CharactersModel] = [] // main data source for populating data
-    @Published private(set) var isLoading: Bool = false
-    @Published private(set) var offset: Int = 0
-    @Published private(set) var isMoreDataAvailable: Bool = false
-    @Published private(set) var isResultsEmpty: Bool = false
+    @Published private(set) var isLoading: Bool = false // used to shoe loader view until data loads
+    @Published private(set) var offset: Int = 0 // used to implement the pagiantion
+    @Published private(set) var isMoreDataAvailable: Bool = false // used to check whether more data available to load
+    @Published private(set) var isResultsEmpty: Bool = false // used to show empty state view when result is empty
     @Published var searchText: String = ""
     
-    private(set) var medium: FetchDataMedium = .normal
-    private var isViewLoaded: Bool = false
-    private var fetchedCharacters: [CharactersModel] = []
-    private var searchedCharacters: [CharactersModel] = []
+    private(set) var medium: FetchDataMedium = .normal // specify the medium whether the data is searhced or not
+    private var isViewLoaded: Bool = false // used to not call api every time
+    private var fetchedCharacters: [CharactersModel] = [] // Store fetched data source
+    private var searchedCharacters: [CharactersModel] = [] // Store Searched data source
     
     var history: [String] = [] // to show history of results
     var searchResults: [String] {
@@ -37,7 +37,7 @@ class CharactersViewModel: ObservableObject {
         self.dataRepo = dataRepo
     }
     
-    
+    //MARK: - called on onAppear
     func getData() {
         if !isViewLoaded {
             fetchCharactersData()
@@ -46,6 +46,7 @@ class CharactersViewModel: ObservableObject {
     }
     
      
+    //MARK: - Condition to load more Data
     func shouldLoadData(id: Int, limit: Int)  {
         if id == limit - 1 {
             offset += 1
@@ -53,7 +54,7 @@ class CharactersViewModel: ObservableObject {
         }
     }
     
-    
+    //MARK: - Logic to add search query into history and fetch search query result
     func searchQuery() {
         searchedCharacters.removeAll()
         if !history.contains(searchText) {
@@ -64,6 +65,7 @@ class CharactersViewModel: ObservableObject {
         fetchCharactersData()
     }
     
+    //MARK: - change medium to normal when you pressed normal
     func cancelButtonPressed() {
         medium = .normal
         fetchCharactersData()

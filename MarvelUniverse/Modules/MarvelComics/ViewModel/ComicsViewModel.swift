@@ -11,10 +11,10 @@ class ComicsViewModel: ObservableObject {
     
     private let dataRepo: ComicsDataServiceProtocol
     @Published private(set) var comics: [ComicsModel] = [] // main source for data population
-    @Published private(set) var isLoading: Bool = false
-    @Published private(set) var offset: Int = 0
-    @Published private(set) var isMoreDataAvailable: Bool = false
-    @Published var selectedFilter = FilterOptions.releaseThisMonth
+    @Published private(set) var isLoading: Bool = false // used to shoe loader view until data loads
+    @Published private(set) var offset: Int = 0 // used to implement the pagiantion
+    @Published private(set) var isMoreDataAvailable: Bool = false // used to check whether more data available to load
+    @Published var selectedFilter = FilterOptions.releaseThisMonth // variable attached to picker
     
     private var isViewLoaded: Bool = false
     
@@ -22,6 +22,7 @@ class ComicsViewModel: ObservableObject {
         self.dataRepo = dataRepo
     }
     
+    //MARK: - called on onAppear
     func getData() {
         if !isViewLoaded {
             fetchComicsData()
@@ -29,7 +30,7 @@ class ComicsViewModel: ObservableObject {
         }
     }
     
-    
+    //MARK: - Condition to load more Data
     func shouldLoadData(id: Int, limit: Int)  {
         if id == limit - 1 {
             offset += 1

@@ -9,7 +9,7 @@ import XCTest
 import Combine
 @testable import MarvelUniverse
 
-
+//MARK: - Mock Data Repo to perform Unit Testing
 final class MockCharactersDataRepository: CharactersDataServiceProtocol {
     func getCharacters(name: String?, offset: Int, success: @escaping (ResponseModel<CharactersModel>) -> Void, failure: @escaping (String) -> Void) {
         DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
@@ -22,6 +22,7 @@ final class MockCharactersDataRepository: CharactersDataServiceProtocol {
     }
 }
 
+//MARK: - Characters View Model Unit Tests
 final class CharactersViewModelUnitTests: XCTestCase {
     
     private var viewModel: CharactersViewModel!
