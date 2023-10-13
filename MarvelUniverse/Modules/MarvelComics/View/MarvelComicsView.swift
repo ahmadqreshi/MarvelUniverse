@@ -45,9 +45,6 @@ struct MarvelComicsView: View {
             }
             
         }
-        .onAppear {
-            viewModel.fetchComicsData()
-        }
         .onChange(of: viewModel.selectedFilter) { _ in
             viewModel.comics.removeAll()
             viewModel.fetchComicsData()

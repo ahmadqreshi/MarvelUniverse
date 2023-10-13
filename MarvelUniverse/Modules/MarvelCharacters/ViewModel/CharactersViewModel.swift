@@ -23,7 +23,19 @@ class CharactersViewModel: ObservableObject {
     @Published var searchText: String = ""
     @Published var isResultsEmpty: Bool = false
     
-    var history: [String] = []
+    var history: [String] = [] // to show history of results
+    var searchResults: [String] {
+        if searchText.isEmpty {
+            return history
+        } else {
+            return history.filter { $0.contains(searchText) }
+        }
+    }
+    
+    
+    init() {
+        fetchCharactersData()
+    }
     
     func fetchCharactersData() {
         DispatchQueue.main.async { [weak self] in

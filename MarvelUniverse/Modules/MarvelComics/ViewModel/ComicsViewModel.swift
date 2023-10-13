@@ -15,6 +15,10 @@ class ComicsViewModel: ObservableObject {
     @Published var isMoreDataAvailable: Bool = false
     @Published var selectedFilter = FilterOptions.releaseThisMonth
     
+    init() {
+        fetchComicsData()
+    }
+    
     func fetchComicsData() {
         DispatchQueue.main.async { [weak self] in
             guard let strongSelf = self else { return }

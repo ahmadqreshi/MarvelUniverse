@@ -37,13 +37,6 @@ struct CharacterCardView: View {
                 .fontWeight(.semibold)
                 .foregroundColor(.black)
                 .padding(.bottom, 10)
-//                .minimumScaleFactor(0.5)
-            
-//            Text(character.description ?? "")
-//                .font(.system(size: 14))
-//                .fontWeight(.semibold)
-//                .foregroundColor(.gray)
-//                .minimumScaleFactor(0.5)
         }
         .frame(width: getRect().width/2 - 20, alignment: .top)
     }

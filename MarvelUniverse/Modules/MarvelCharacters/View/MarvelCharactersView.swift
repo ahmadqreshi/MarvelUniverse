@@ -12,17 +12,13 @@ struct MarvelCharactersView: View {
     @StateObject var viewModel: CharactersViewModel = CharactersViewModel()
     @Environment(\.isSearching) private var isSearching: Bool
    
-    
     let columns = [
         GridItem(.flexible(), alignment: .top),
         GridItem(.flexible(), alignment: .top),
     ]
     
-    
-    
     var body: some View {
         NavigationStack {
-            
             if viewModel.isLoading {
                 LoaderView()
             } else {
@@ -52,11 +48,8 @@ struct MarvelCharactersView: View {
             }
             
         }
-        .onAppear {
-            viewModel.fetchCharactersData()
-        }
         .searchable(text: $viewModel.searchText, placement: .navigationBarDrawer(displayMode: .automatic), prompt: Text("Search any Character")) {
-            ForEach(searchResults, id: \.self) { result in
+            ForEach(viewModel.searchResults, id: \.self) { result in
                 Text("Are you looking for \(result)?").searchCompletion(result)
             }
         }
@@ -68,15 +61,6 @@ struct MarvelCharactersView: View {
         }
         .onSubmit(of: .search, viewModel.searchQuery)
     }
-    
-    var searchResults: [String] {
-        if viewModel.searchText.isEmpty {
-            return viewModel.history
-        } else {
-            return viewModel.history.filter { $0.contains(viewModel.searchText) }
-        }
-    }
-    
 }
 
 struct MarvelCharactersView_Previews: PreviewProvider {
