@@ -10,7 +10,7 @@ import Combine
 @testable import MarvelUniverse
 
 
-class MockCharactersDataRepository: CharactersDataServiceProtocol {
+final class MockCharactersDataRepository: CharactersDataServiceProtocol {
     func getCharacters(name: String?, offset: Int, success: @escaping (ResponseModel<CharactersModel>) -> Void, failure: @escaping (String) -> Void) {
         DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
             CommonFunctions.convertJsonFiletoDto(filename: JsonFiles.charactersResponse.fileName) { (response: ResponseModel<CharactersModel>) in

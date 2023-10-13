@@ -33,7 +33,7 @@ struct MarvelComicsView: View {
                             ForEach(Array(viewModel.comics.enumerated()), id: \.offset) { index, comic in
                                 ComicsCardView(comic: comic)
                                     .onAppear {
-                                        viewModel.shouldLoadData(id: index)
+                                        viewModel.shouldLoadData(id: index, limit: viewModel.comics.count)
                                     }
                             }
                         }

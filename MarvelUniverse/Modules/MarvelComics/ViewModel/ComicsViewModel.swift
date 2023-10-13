@@ -30,8 +30,8 @@ class ComicsViewModel: ObservableObject {
     }
     
     
-    func shouldLoadData(id: Int)  {
-        if id == comics.count - 1 {
+    func shouldLoadData(id: Int, limit: Int)  {
+        if id == limit - 1 {
             offset += 1
             fetchComicsData()
         }
