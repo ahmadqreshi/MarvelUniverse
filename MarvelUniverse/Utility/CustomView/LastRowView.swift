@@ -12,7 +12,7 @@ struct LastRowView: View {
         ZStack(alignment: .center) {
             ProgressView()
         }
-        .frame(maxHeight: 50)
+        .frame(height: 50)
     }
 }
 

@@ -16,7 +16,6 @@ class ComicsViewModel: ObservableObject {
     @Published var selectedFilter = FilterOptions.releaseThisMonth
     
     func fetchComicsData() {
-        
         DispatchQueue.main.async { [weak self] in
             guard let strongSelf = self else { return }
             if strongSelf.offset == 0 {
@@ -36,6 +35,7 @@ class ComicsViewModel: ObservableObject {
                         strongSelf.comics.append(contentsOf: response.data.results)
                     }
                     strongSelf.isLoading = false
+                    strongSelf.isMoreDataAvailable = !strongSelf.comics.isEmpty
                 }
             } failure: { error in
                 debugPrint(error)

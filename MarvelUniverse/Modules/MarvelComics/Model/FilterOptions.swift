@@ -27,7 +27,6 @@ enum FilterOptions: String, CaseIterable, Identifiable {
         }
     }
     
-    
     var dateDescriptor: String {
         switch self {
         case .releasedThisWeek:

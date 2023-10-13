@@ -20,7 +20,7 @@ struct CharacterCardView: View {
     }
     
     var body: some View {
-        ZStack(alignment: .bottom) {
+        VStack(alignment: .leading) {
             WebImage(url: URL(string: thumbnailString))
                 .resizable()
                 .placeholder {
@@ -30,29 +30,27 @@ struct CharacterCardView: View {
                 .indicator(.activity)
                 .transition(.fade(duration: 0.5))
                 .cornerRadius(10)
+                .frame(height: 200)
             
             Text(character.name ?? "")
                 .font(.system(size: 18))
                 .fontWeight(.semibold)
-                .foregroundColor(.white)
+                .foregroundColor(.black)
                 .padding(.bottom, 10)
+//                .minimumScaleFactor(0.5)
+            
+//            Text(character.description ?? "")
+//                .font(.system(size: 14))
+//                .fontWeight(.semibold)
+//                .foregroundColor(.gray)
+//                .minimumScaleFactor(0.5)
         }
-        .frame(width: getRect().width/2 - 20, height: 200, alignment: .top)
+        .frame(width: getRect().width/2 - 20, alignment: .top)
     }
 }
 
 struct CharacterCardView_Previews: PreviewProvider {
     static var previews: some View {
-        CharacterCardView(character: CharactersModel(
-            thumbnail: nil,
-            id: nil,
-            stories: nil,
-            comics: nil,
-            series: nil,
-            events: nil,
-            urls: nil,
-            name: nil,
-            resourceURI: nil,
-            description: nil))
+        CharacterCardView(character: CharactersModel.dummyData())
     }
 }

@@ -10,20 +10,32 @@ import SDWebImageSwiftUI
 
 struct ComicsCardView: View {
     
-    //var comic: ComicsModel
+    var comic: ComicsModel
     
-//    var thumbnailString: String {
-//        let path = comic.thumbnail?.path ?? ""
-//        let securePath = path.replacingOccurrences(of: "http", with: "https")
-//        let actualPath = securePath.replacingOccurrences(of: #"\"#, with: "")
-//        let extensionString = character.thumbnail?.thumbnailExtension ?? ""
-//        return "\(actualPath).\(extensionString)"
-//    }
-//
+    var thumbnailString: String {
+        let path = comic.thumbnail?.path ?? ""
+        let securePath = path.replacingOccurrences(of: "http", with: "https")
+        let actualPath = securePath.replacingOccurrences(of: #"\"#, with: "")
+        let extensionString = comic.thumbnail?.thumbnailExtension ?? ""
+        return "\(actualPath).\(extensionString)"
+    }
+    
+    var price: String {
+        guard let price = comic.prices?.first else { return "" }
+        return "\(price.price)$"
+    }
+    
+    var comicName: String {
+        comic.title?.capitalized ?? ""
+    }
+    
+    var pages: String {
+        return "Total Pages \(comic.pageCount ?? 0)"
+    }
     
     var body: some View {
-        ZStack() {
-            WebImage(url: URL(string: "thumbnailString"))
+        VStack(alignment: .leading) {
+            WebImage(url: URL(string: thumbnailString))
                 .resizable()
                 .placeholder {
                     RoundedRectangle(cornerRadius: 10)
@@ -32,33 +44,30 @@ struct ComicsCardView: View {
                 .indicator(.activity)
                 .transition(.fade(duration: 0.5))
                 .cornerRadius(10)
-            VStack {
-                HStack {
-                    Spacer()
-                    Text("2.33$")
-                        .font(.system(size: 16))
-                        .foregroundColor(.red)
-                        .padding([.trailing, .top], 10)
-                }
-                Spacer()
-                Text("Avengers")
-                    .font(.system(size: 20))
-                    .fontWeight(.medium)
-                    .foregroundColor(.white)
-                Text("Pages 190")
-                    .font(.system(size: 14))
-                    .foregroundColor(.white)
-                    .padding(.bottom, 10)
-                
-            }
+                .frame(height: 200)
+            
+            Text(comicName)
+                .font(.system(size: 20))
+                .fontWeight(.medium)
+                .foregroundColor(.black)
+                .fixedSize(horizontal: false, vertical: true)
+            
+            Text(price)
+                .font(.system(size: 16))
+                .foregroundColor(.red)
+            
+            Text(pages)
+                .font(.system(size: 14))
+                .foregroundColor(.black)
+                .padding(.bottom, 10)
             
         }
-        .frame(width: getRect().width/2 - 20, height: 200, alignment: .top)
+        .frame(width: getRect().width/2 - 20, alignment: .top)
     }
 }
 
-//struct ComicsCardView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        ComicsCardView()
-//    }
-//}
+struct ComicsCardView_Previews: PreviewProvider {
+    static var previews: some View {
+        ComicsCardView(comic: ComicsModel.dummyData())
+    }
+}

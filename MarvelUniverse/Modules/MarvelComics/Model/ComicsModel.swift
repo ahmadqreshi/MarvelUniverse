@@ -20,3 +20,24 @@ struct Price: Codable {
     let type: String
     let price: Double
 }
+
+
+
+extension ComicsModel {
+    
+    static func dummyData() -> ComicsModel {
+        return ComicsModel(
+            prices: [Price(type: "", price: 5.66)],
+            thumbnail: nil,
+            title: "Avengers",
+            diamondCode: nil,
+            issn: nil,
+            images: nil,
+            id: nil,
+            pageCount: 120,
+            issueNumber: nil,
+            digitalId: nil,
+            resourceURI: nil,
+            variantDescription: nil)
+    }
+}

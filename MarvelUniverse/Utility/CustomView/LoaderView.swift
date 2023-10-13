@@ -15,6 +15,7 @@ struct LoaderView: View {
                 .tint(.red)
                 .controlSize(.large)
         }
+        .frame(maxWidth: .infinity, maxHeight: .infinity)
     }
 }
 

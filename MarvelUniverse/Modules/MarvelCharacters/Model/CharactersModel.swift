@@ -55,12 +55,25 @@ struct Thumbnail: Codable {
 
 // MARK: - URLElement
 struct URLElement: Codable {
-    let type: URLType?
+    let type: String?
     let url: String?
 }
 
-enum URLType: String, Codable {
-    case comiclink = "comiclink"
-    case detail = "detail"
-    case wiki = "wiki"
+
+
+
+extension CharactersModel {
+    static func dummyData() -> CharactersModel {
+        return CharactersModel(
+            thumbnail: nil,
+            id: nil,
+            stories: nil,
+            comics: nil,
+            series: nil,
+            events: nil,
+            urls: nil,
+            name: "Captain America",
+            resourceURI: nil,
+            description: "he is the greatest avengers and just a human being with super powers")
+    }
 }

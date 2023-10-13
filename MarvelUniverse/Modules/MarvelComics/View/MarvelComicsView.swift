@@ -21,17 +21,35 @@ struct MarvelComicsView: View {
         VStack {
             navigationView
                 .padding(.all, 16)
-            ScrollView(.vertical) {
-                LazyVGrid(columns: columns) {
-                    ForEach(0...20, id: \.self) { _ in
-                       ComicsCardView()
-                            .padding(.bottom, 32)
+            ZStack {
+                if viewModel.isLoading {
+                    LoaderView()
+                } else {
+                    ScrollView(.vertical) {
+                        LazyVGrid(columns: columns) {
+                            ForEach(Array(viewModel.comics.enumerated()), id: \.offset) { index, comic in
+                                ComicsCardView(comic: comic)
+                                    .onAppear {
+                                        viewModel.shouldLoadData(id: index)
+                                    }
+                            }
+                        }
+                        .padding(.horizontal, 16)
+                        
+                        if viewModel.isMoreDataAvailable {
+                            LastRowView()
+                        }
+                        
                     }
                 }
-                .padding(.horizontal, 16)
             }
+            
         }
         .onAppear {
+            viewModel.fetchComicsData()
+        }
+        .onChange(of: viewModel.selectedFilter) { _ in
+            viewModel.comics.removeAll()
             viewModel.fetchComicsData()
         }
     }
