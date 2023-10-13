@@ -7,11 +7,6 @@
 
 import Foundation
 
-enum FetchDataMedium {
-    case normal
-    case query
-}
-
 class CharactersViewModel: ObservableObject {
     
     
@@ -38,6 +33,8 @@ class CharactersViewModel: ObservableObject {
             guard let strongSelf = self else { return }
             if strongSelf.offset == 0 {
                 strongSelf.isLoading = true
+            } else  {
+                strongSelf.isMoreDataAvailable = true
             }
         }
         
@@ -64,6 +61,7 @@ class CharactersViewModel: ObservableObject {
                     }
                     strongSelf.isLoading = false
                     strongSelf.isResultsEmpty = strongSelf.characters.isEmpty
+                    strongSelf.isMoreDataAvailable = !strongSelf.characters.isEmpty
                 }
             } failure: { error in
                 debugPrint(error)
@@ -83,7 +81,9 @@ class CharactersViewModel: ObservableObject {
     
     func searchQuery() {
         searchedCharacters.removeAll()
-        history.append(searchText)
+        if !history.contains(searchText) {
+            history.append(searchText)
+        }
         medium = .query
         fetchCharactersData()
     }
