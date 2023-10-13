@@ -10,6 +10,8 @@ import SwiftUI
 struct MarvelCharactersView: View {
     
     @StateObject var viewModel: CharactersViewModel = CharactersViewModel()
+    @Environment(\.isSearching) private var isSearching: Bool
+   
     
     let columns = [
         GridItem(.flexible(), alignment: .top),
@@ -40,8 +42,13 @@ struct MarvelCharactersView: View {
                         if viewModel.isMoreDataAvailable {
                             lastRowView
                         }
+                        
+                        if viewModel.isResultsEmpty {
+                            Text("No Results Found!")
+                        }
                     }
                 }
+                
             }
             
         }
@@ -50,10 +57,13 @@ struct MarvelCharactersView: View {
                 Text("Are you looking for \(result)?").searchCompletion(result)
             }
         }
-        .onChange(of: viewModel.searchText) { newValue in
-            debugPrint(newValue)
+        .onChange(of: viewModel.searchText) { value in
+            if value.isEmpty && !isSearching {
+                viewModel.medium = .normal
+                viewModel.fetchCharactersData()
+            }
         }
-        .onSubmit(of: .search, runSearch)
+        .onSubmit(of: .search, viewModel.searchQuery)
     }
     
     var searchResults: [String] {
@@ -63,13 +73,6 @@ struct MarvelCharactersView: View {
             return viewModel.history.filter { $0.contains(viewModel.searchText) }
         }
     }
-    
-    func runSearch() {
-        viewModel.history.append(viewModel.searchText)
-        viewModel.getData()
-        debugPrint("Run Search")
-    }
-    
     
     var lastRowView: some View {
         ZStack(alignment: .center) {

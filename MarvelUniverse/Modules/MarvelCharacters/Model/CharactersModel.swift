@@ -8,12 +8,14 @@
 import Foundation
 
 struct CharactersModel: Codable, Identifiable {
+   
     let thumbnail: Thumbnail?
     let id: Int?
     let stories: Stories?
     let comics, series, events: Comics?
     let urls: [URLElement]?
     let name, resourceURI, description: String?
+    
 }
 
 // MARK: - Comics
