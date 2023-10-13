@@ -1,14 +1,14 @@
-////
-////  CharactersModel.swift
-////  MarvelUniverse
-////
-////  Created by Ahmad Qureshi on 11/10/23.
-////
 //
+//  CharactersModel.swift
+//  MarvelUniverse
+//
+//  Created by Ahmad Qureshi on 11/10/23.
+//
+
 import Foundation
 
 struct CharactersModel: Codable, Identifiable {
-   
+    
     let thumbnail: Thumbnail?
     let id: Int?
     let stories: Stories?
@@ -46,7 +46,7 @@ struct StoriesItem: Codable {
 // MARK: - Thumbnail
 struct Thumbnail: Codable {
     let path, thumbnailExtension: String?
-
+    
     enum CodingKeys: String, CodingKey {
         case path
         case thumbnailExtension = "extension"
