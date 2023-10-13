@@ -38,6 +38,7 @@ class ComicsViewModel: ObservableObject {
     }
     
     func filterChanged() {
+        isLoading = true
         comics.removeAll()
         fetchComicsData()
     }
