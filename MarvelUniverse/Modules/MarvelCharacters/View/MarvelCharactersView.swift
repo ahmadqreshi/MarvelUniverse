@@ -58,8 +58,7 @@ struct MarvelCharactersView: View {
         }
         .onChange(of: viewModel.searchText) { value in
             if value.isEmpty && !isSearching {
-                viewModel.medium = .normal
-                viewModel.fetchCharactersData()
+                viewModel.cancelButtonPressed()
             }
         }
         .onSubmit(of: .search, viewModel.searchQuery)

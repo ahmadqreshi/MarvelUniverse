@@ -16,7 +16,7 @@ class ComicsViewModel: ObservableObject {
     @Published private(set) var isMoreDataAvailable: Bool = false
     @Published var selectedFilter = FilterOptions.releaseThisMonth
     
-    var isViewLoaded: Bool = false
+    private var isViewLoaded: Bool = false
     
     init(dataRepo: ComicsDataServiceProtocol = ComicsDataRepository()) {
         self.dataRepo = dataRepo
