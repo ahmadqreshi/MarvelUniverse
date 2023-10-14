@@ -68,6 +68,7 @@ class CharactersViewModel: ObservableObject {
     //MARK: - change medium to normal when you pressed normal
     func cancelButtonPressed() {
         medium = .normal
+        isLoading = true
         fetchCharactersData()
     }
     
