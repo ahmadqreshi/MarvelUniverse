@@ -14,7 +14,7 @@ struct CommonFunctions {
         failure: @escaping (String) -> Void
     ) {
         let rawData: Data
-
+        
         if let fileUrl = Bundle.main.url(forResource: filename, withExtension: "json") {
             do {
                 rawData = try Data(contentsOf: fileUrl)
@@ -22,7 +22,7 @@ struct CommonFunctions {
                 failure("Couldn't load \(filename) from main bundle:\n\(error)")
                 return
             }
-
+            
             do {
                 let decodedData = try JSONDecoder().decode(T.self, from: rawData)
                 success(decodedData)
