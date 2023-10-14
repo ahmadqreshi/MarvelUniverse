@@ -5,12 +5,12 @@ An iOS application for marvel fans out there, it shows the the list of marvel ch
 ![2](https://github.com/ahmadqreshi/MarvelUniverse/assets/81093987/5d8288ea-993a-48b4-9cfe-c96b60434ecf)
 
 
-##App Preview
+## App Preview
 
 https://github.com/ahmadqreshi/MarvelUniverse/assets/81093987/e4256115-c617-44f3-9a00-75ef6ddae818
 
 
-##Features
+## Features
 - implemented Marvel Universe API
 - Used MVVM + clean Architecture Design Pattern
 - Handled Strong References using weak keyword
