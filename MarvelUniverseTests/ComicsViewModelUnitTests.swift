@@ -42,7 +42,7 @@ final class ComicsViewModelUnitTests: XCTestCase {
     
     //MARK: - Test: Population of Data Source
     func testComicsDataSourceAfterApiCall() throws {
-        let expectation = XCTestExpectation(description: "Should return Characters after 3 seconds")
+        let expectation = XCTestExpectation(description: "Should return Comics after 3 seconds")
         viewModel.getData()
         viewModel.$comics
             .dropFirst()
@@ -76,7 +76,7 @@ final class ComicsViewModelUnitTests: XCTestCase {
     
     //MARK: - Test: Repopulate data on filter changed
     func testDataSourceOnFilterChange() {
-        let expectation = XCTestExpectation(description: "Should return Characters after 3 seconds")
+        let expectation = XCTestExpectation(description: "Should return Comics after 3 seconds")
         viewModel.filterChanged()
         XCTAssertTrue(viewModel.comics.isEmpty)
         viewModel.$comics

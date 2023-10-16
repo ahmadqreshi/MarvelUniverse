@@ -22,7 +22,7 @@ class CharactersDataRepository: CharactersDataServiceProtocol {
             case .failure(let error):
                 switch error {
                 case .urlError:
-                    failure("url is valid")
+                    failure("url is invalid")
                 case .decodingProblem :
                     failure("response problem")
                 case .responseProblem :
